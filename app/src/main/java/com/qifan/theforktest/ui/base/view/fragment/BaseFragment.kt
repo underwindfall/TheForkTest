@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.qifan.theforktest.extension.inflateLayout
 import com.qifan.theforktest.ui.base.view.IView
 import io.reactivex.disposables.CompositeDisposable
 
@@ -18,7 +19,7 @@ abstract class BaseFragment : Fragment(), IView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(getLayoutId(), container, false)
+        return container?.inflateLayout(getLayoutId())
     }
 
     @LayoutRes

@@ -19,6 +19,7 @@ object deps {
         const val rxJava = "2.2.18"
         const val rxKotlin = "2.4.0"
         const val rxAndroid = "2.1.1"
+        const val picasso = "2.71828"
         // test
         const val juint = "4.13"
         const val junitExt = "1.1.1"
@@ -75,6 +76,8 @@ object deps {
     object kotlin {
         const val jdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
     }
+
+    const val picasso = "com.squareup.picasso:picasso:${versions.picasso}"
 
     object dagger {
         const val core = "com.google.dagger:dagger:${versions.dagger}"

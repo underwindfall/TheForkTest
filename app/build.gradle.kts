@@ -66,6 +66,7 @@ dependencies {
     implementation(deps.okhttp.core)
     implementation(deps.retrofit.rxJava2)
     implementation(deps.retrofit.gson)
+    implementation(deps.picasso)
 
     testImplementation(deps.test.junit)
     androidTestImplementation(deps.test.android.extensionJunit)
