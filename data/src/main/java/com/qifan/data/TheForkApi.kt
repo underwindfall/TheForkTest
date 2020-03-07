@@ -13,9 +13,9 @@ interface TheForkApi {
     @GET("api")
     fun getRestaurantDetail(
         @Query("key")
-        key: ApiKey = KEY,
+        key: ApiKey,
         @Query("method")
-        method: ApiMethod = METHOD,
+        method: ApiMethod,
         @Query("id_restaurant")
         restaurantId: ApiRequestId
     ): Single<Restaurant>
@@ -23,8 +23,5 @@ interface TheForkApi {
     companion object {
         const val HOST = "api.lafourchette.com/"
         const val ENDPOINT = "http://$HOST"
-
-        private const val KEY = "IPHONEPRODEDCRFV"
-        private const val METHOD = "restaurant_get_info"
     }
 }

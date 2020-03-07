@@ -3,6 +3,7 @@ package com.qifan.data.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.qifan.data.TheForkApi
+import com.qifan.data.di.repository.RepositoryModule
 import com.qifan.data.di.service.ServiceModule
 import dagger.Module
 import dagger.Provides
@@ -15,7 +16,8 @@ import javax.inject.Singleton
 
 @Module(
     includes = [
-        ServiceModule::class
+        ServiceModule::class,
+        RepositoryModule::class
     ]
 )
 object DataModule {
