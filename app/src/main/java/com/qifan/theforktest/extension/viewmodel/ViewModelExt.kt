@@ -1,4 +1,4 @@
-package com.qifan.theforktest.extension
+package com.qifan.theforktest.extension.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
