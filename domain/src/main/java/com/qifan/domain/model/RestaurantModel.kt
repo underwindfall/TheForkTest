@@ -1,4 +1,4 @@
-package com.qifan.domain
+package com.qifan.domain.model
 
 data class RestaurantModel(
     val id: String,

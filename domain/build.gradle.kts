@@ -1,6 +1,7 @@
 plugins {
     `java-library`
     id("kotlin")
+    id("kotlin-kapt")
 }
 
 
@@ -9,4 +10,6 @@ dependencies {
     implementation(deps.kotlin.jdk7)
     implementation(deps.rx.java)
     implementation(deps.rx.kotlin)
+    implementation(deps.dagger.core)
+    kapt(deps.dagger.compile)
 }

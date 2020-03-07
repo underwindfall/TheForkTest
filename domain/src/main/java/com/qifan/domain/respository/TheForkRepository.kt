@@ -1,5 +1,6 @@
-package com.qifan.domain
+package com.qifan.domain.respository
 
+import com.qifan.domain.model.RestaurantModel
 import io.reactivex.Single
 
 interface TheForkRepository {

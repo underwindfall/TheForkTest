@@ -1,7 +1,7 @@
 package com.qifan.data.entity
 
 import com.google.gson.annotations.SerializedName
-import com.qifan.domain.RestaurantModel
+import com.qifan.domain.model.RestaurantModel
 
 data class Restaurant(
     @SerializedName("result")

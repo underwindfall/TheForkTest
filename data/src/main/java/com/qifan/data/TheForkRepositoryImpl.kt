@@ -1,12 +1,13 @@
 package com.qifan.data
 
 import com.qifan.data.entity.toModel
-import com.qifan.domain.RestaurantModel
-import com.qifan.domain.TheForkRepository
+import com.qifan.domain.model.RestaurantModel
+import com.qifan.domain.respository.TheForkRepository
 import io.reactivex.Single
+import javax.inject.Inject
 
-class TheForkRepositoryImpl constructor(
-    private val theForkService: TheForkService = TheForkService()
+class TheForkRepositoryImpl @Inject constructor(
+    private val theForkService: TheForkService
 ) : TheForkRepository {
     override fun getRestaurantDetail(): Single<RestaurantModel> {
         return theForkService.getRestaurantDetail(restaurantId = "40370")

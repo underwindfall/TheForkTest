@@ -12,6 +12,7 @@ object deps {
         const val viewModel = "2.2.0"
         const val viewModelSaveState = "1.0.0"
         //external lib
+        const val dagger = "2.26"
         const val okhttp = "4.4.0"
         const val retrofit = "2.7.1"
         const val gson = "2.8.6"
@@ -73,6 +74,14 @@ object deps {
 
     object kotlin {
         const val jdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    }
+
+    object dagger {
+        const val core = "com.google.dagger:dagger:${versions.dagger}"
+        const val compile = "com.google.dagger:dagger-compiler:${versions.dagger}"
+        const val android = "com.google.dagger:dagger-android:${versions.dagger}"
+        const val androidSupport = "com.google.dagger:dagger-android-support:${versions.dagger}"
+        const val processor = "com.google.dagger:dagger-android-processor:${versions.dagger}"
     }
 
     object test {
