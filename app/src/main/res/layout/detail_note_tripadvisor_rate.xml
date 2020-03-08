@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/trip_advisor_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="#B5706C6C"
+    android:padding="15dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/trip_advisor_logo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/trip_advisor_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RatingBar
+        android:id="@+id/trip_advisor_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/trip_advisor_rating_bar"
+        android:isIndicator="true"
+        android:maxHeight="30dp"
+        android:minHeight="15dp"
+        android:numStars="5"
+        android:progressDrawable="@drawable/trip_advisor_rating_bar"
+        android:stepSize="0.1"
+        app:layout_constraintBottom_toBottomOf="@+id/trip_advisor_logo"
+        app:layout_constraintLeft_toRightOf="@id/trip_advisor_logo"
+        app:layout_constraintStart_toEndOf="@+id/trip_advisor_logo"
+        app:layout_constraintTop_toTopOf="@+id/trip_advisor_logo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/trip_advisor_review_count"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:gravity="start"
+        android:text="@string/trip_advisor_review_count"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/trip_advisor_review_show_more"
+        app:layout_constraintStart_toEndOf="@+id/trip_advisor_rating"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/trip_advisor_review_show_more"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:gravity="start"
+        android:text="@string/trip_advisor_review_count_show_more"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/trip_advisor_rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/trip_advisor_review_count"
+        app:layout_constraintTop_toTopOf="@+id/trip_advisor_rating" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

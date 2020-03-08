@@ -8,14 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.qifan.domain.model.RestaurantBannerModel
 import com.qifan.domain.respository.RestaurantId
 import com.qifan.theforktest.R
+import com.qifan.theforktest.extension.checkNullOrHideView
 import com.qifan.theforktest.extension.inflateLayout
-import com.squareup.picasso.Picasso
+import com.qifan.theforktest.extension.load
+import io.reactivex.Flowable
 import io.reactivex.processors.PublishProcessor
 import kotlin.math.truncate
 
 class RestaurantListAdapter : RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>() {
     private val restaurants: MutableList<RestaurantBannerModel> = mutableListOf()
     private val mOnItemSelected: PublishProcessor<RestaurantId> = PublishProcessor.create()
+
+    val onItemSelected: Flowable<RestaurantId> = mOnItemSelected
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         return RestaurantViewHolder(parent.inflateLayout(R.layout.restaurant_item_view))
@@ -25,38 +29,20 @@ class RestaurantListAdapter : RecyclerView.Adapter<RestaurantListAdapter.Restaur
         with(restaurants[position]) {
             holder.title.text = name
             holder.des.text = speciality
-            checkNullHideView(holder.rate, averageRate) {
+            checkNullOrHideView(holder.rate, averageRate) {
                 holder.rate.text = truncate(it).toString()
             }
-            checkNullHideView(holder.price, price) {
+            checkNullOrHideView(holder.price, price) {
                 holder.price.text = formatPrice(it)
             }
-            loadImage(holder.banner, bannerUrl)
+            checkNullOrHideView(holder.banner, bannerUrl) {
+                holder.banner.load(it)
+            }
 
             holder.itemView.setOnClickListener {
                 mOnItemSelected.onNext(id)
             }
         }
-    }
-
-    private inline fun <reified T : Any> checkNullHideView(
-        view: View,
-        parameter: T?,
-        showFunc: (parameter: T) -> Unit
-    ) {
-        parameter?.run {
-            showFunc(this)
-        } ?: apply { view.visibility = View.GONE }
-    }
-
-    private fun loadImage(
-        imageView: AppCompatImageView,
-        bannerUrl: String?
-    ) {
-        Picasso.get()
-            .load(bannerUrl)
-            .placeholder(R.drawable.ic_launcher_background)
-            .into(imageView)
     }
 
     private fun formatPrice(price: RestaurantBannerModel.Price): String {

@@ -1,3 +1,20 @@
 <resources>
-	<string name="app_name">TheForkTest</string>
+    <string name="app_name">TheForkTest</string>
+    <string name="reservation_button">RESERVER</string>
+    <string name="restaurant_menu_title">CARTE DU RESTAURANT</string>
+    <string name="menu_start">Start</string>
+    <string name="restaurant_menu_subtitle">Extrait de la carte du Chef %s</string>
+    <string name="restaurant_menu_date">Mis a jour le %s</string>
+    <string name="restaurant_avg_price">Prix moyen %1$s %2$s</string>
+    <string name="restaurant_menu_start">Entrée</string>
+    <string name="restaurant_menu_price">%s€</string>
+    <string name="restaurant_avg_rate">%s / 10</string>
+    <string name="restaurant_rate_number">%s avis</string>
+    <string name="restaurant_menu_main">Plat</string>
+    <string name="restaurant_menu_dessert">Dessert</string>
+    <string name="restaurant_note_subtitle"><![CDATA[NOTES & AVIS]]></string>
+    <string name="restaurant_note_rate_count">basé sur %s notes</string>
+    <string name="restaurant_note_rate_see_more">VOIR TOUS LES AVIS</string>
+    <string name="trip_advisor_review_count">%s avis</string>
+    <string name="trip_advisor_review_count_show_more">VOIR TOUT</string>
 </resources>

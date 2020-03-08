@@ -50,6 +50,7 @@ dependencies {
     implementation(deps.rx.kotlin)
     implementation(deps.rx.android)
     implementation(deps.android.androidx.appcompat)
+    implementation(deps.android.androidx.viewPager2)
     implementation(deps.android.androidx.coreKtx)
     implementation(deps.android.androidx.constraintlayout)
     implementation(deps.android.androidx.material)

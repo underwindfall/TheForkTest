@@ -6,6 +6,7 @@ object deps {
         const val kotlin = "1.3.61"
         // android
         const val appcompat = "1.1.0"
+        const val viewpager2 = "1.0.0"
         const val coreKtx = "1.2.0"
         const val constraintlayout = "1.1.3"
         const val material = "1.1.0"
@@ -34,6 +35,7 @@ object deps {
             const val constraintlayout =
                 "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
             const val material = "com.google.android.material:material:${versions.material}"
+            const val viewPager2 = "androidx.viewpager2:viewpager2:${versions.viewpager2}"
         }
 
         object viewModel {

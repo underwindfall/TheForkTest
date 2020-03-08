@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_title"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_title"
+        app:layout_constraintBottom_toTopOf="@+id/restaurant_menu_title_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_title_date"
+        style="@style/TextAppearance.AppCompat.Menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/restaurant_menu_date"
+        android:textColor="#777575"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/restaurant_menu_subtitle"
+        app:layout_constraintEnd_toEndOf="@+id/restaurant_menu_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_title"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_subtitle"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/restaurant_menu_subtitle"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/restaurant_menu_title_date"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_title_date"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_title_date" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_start_title"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/restaurant_menu_start"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/restaurant_menu_subtitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_subtitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_start_1"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_start_title"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_start_title"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_start_1_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_start_1"
+        tools:text="15€" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_start_2"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_start_title"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_start_1"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_start_2_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_start_2"
+        tools:text="15€" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_start_3"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_start_title"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_start_2"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_start_3_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_start_3"
+        tools:text="15€" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_main_title"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/restaurant_menu_main"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/restaurant_menu_subtitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_start_3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_main_1"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_main_title"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_main_title"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_main_1_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_main_1"
+        tools:text="15€" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_main_2"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_main_1"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_main_1"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_main_2_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_main_2"
+        tools:text="15€" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_main_3"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_main_2"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_main_2"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_main_3_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_main_3"
+        tools:text="15€" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_dessert_title"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/restaurant_menu_dessert"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/restaurant_menu_subtitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_main_3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_dessert_1"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_dessert_title"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_dessert_title"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_dessert_1_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_dessert_1"
+        tools:text="15€" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_dessert_2"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_dessert_title"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_dessert_1"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_dessert_2_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_dessert_2"
+        tools:text="15€" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_dessert_3"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/restaurant_menu_dessert_title"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_menu_dessert_2"
+        tools:text="Croustillant au Boudin Pommes ou chevre ou st néctaire" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/restaurant_menu_dessert_3_price"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_price"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_menu_dessert_3"
+        tools:text="15€" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
