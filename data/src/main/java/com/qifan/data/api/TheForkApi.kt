@@ -1,4 +1,4 @@
-package com.qifan.data
+package com.qifan.data.api
 
 import com.qifan.data.entity.Restaurant
 import io.reactivex.Single

@@ -1,5 +1,6 @@
 package com.qifan.data
 
+import com.qifan.data.api.TheForkService
 import com.qifan.data.entity.Restaurant
 import com.qifan.data.entity.toBannerModel
 import com.qifan.data.entity.toModel

@@ -1,6 +1,6 @@
 package com.qifan.data.di.service
 
-import com.qifan.data.TheForkApi
+import com.qifan.data.api.TheForkApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

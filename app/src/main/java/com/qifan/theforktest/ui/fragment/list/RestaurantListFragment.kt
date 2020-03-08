@@ -5,17 +5,25 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.qifan.domain.model.RestaurantBannerModel
+import com.qifan.domain.respository.RestaurantId
 import com.qifan.theforktest.R
 import com.qifan.theforktest.di.viewmodel.ViewModelFactory
+import com.qifan.theforktest.extension.reactive.mainThread
+import com.qifan.theforktest.extension.reactive.subscribeAndLogError
 import com.qifan.theforktest.extension.viewmodel.getInjectViewModel
 import com.qifan.theforktest.ui.base.view.fragment.InjectionFragment
 import com.qifan.theforktest.ui.decorator.MarginItemDecorator
+import com.qifan.theforktest.ui.notifier.ErrorListener
+import com.qifan.theforktest.ui.notifier.ErrorNotifier
+import com.qifan.theforktest.ui.notifier.notifier
+import io.reactivex.Flowable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
 
-class RestaurantListFragment : InjectionFragment() {
+class RestaurantListFragment : InjectionFragment(), ErrorNotifier {
+
+    override val errorListener: ErrorListener by notifier()
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
@@ -23,6 +31,9 @@ class RestaurantListFragment : InjectionFragment() {
     private lateinit var restaurantListViewModel: RestaurantListViewModel
 
     private lateinit var restaurantListAdapter: RestaurantListAdapter
+
+    private val demoRestaurantListId: List<RestaurantId> =
+        listOf("40370", "16409", "14163", "40171")
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -32,14 +43,19 @@ class RestaurantListFragment : InjectionFragment() {
     override fun getLayoutId(): Int = R.layout.fragment_list
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        compositeDisposable.addAll(
+            getRestaurantList().subscribeAndLogError(),
+            getRestaurantListSuccess().subscribeAndLogError(),
+            getRestaurantListFailed().subscribeAndLogError(),
+            getRestaurantListLoading().subscribeAndLogError()
+        )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        compositeDisposable.add(
-            getRestaurantList().subscribe { it ->
-                restaurantListAdapter.setData(it)
-            }
-        )
     }
 
     private fun setupRecyclerView() {
@@ -63,8 +79,45 @@ class RestaurantListFragment : InjectionFragment() {
 
 
     private fun getRestaurantList(): Single<List<RestaurantBannerModel>> {
-        return restaurantListViewModel.getListRestaurant(listOf("40370", "16409", "14163", "40171"))
-            .observeOn(AndroidSchedulers.mainThread())
+        return restaurantListViewModel.getListRestaurant(demoRestaurantListId)
     }
+
+
+    private fun getRestaurantListSuccess(): Flowable<List<RestaurantBannerModel>> =
+        restaurantListViewModel.restaurantBanners
+            .success
+            .mainThread()
+            .doOnNext(::bindRestaurantBanner)
+
+
+    private fun bindRestaurantBanner(data: List<RestaurantBannerModel>) {
+        restaurantListAdapter.setData(data)
+    }
+
+
+    private fun getRestaurantListFailed(): Flowable<Pair<Boolean, Throwable?>> =
+        restaurantListViewModel.restaurantBanners
+            .hasError
+            .mainThread()
+            .doOnNext { (hasError, error) ->
+                if (hasError) {
+                    errorListener.showError(error)
+                }
+            }
+
+
+    private fun getRestaurantListLoading(): Flowable<Boolean> =
+        restaurantListViewModel.restaurantBanners
+            .loading
+            .mainThread()
+            .doOnNext { show ->
+                if (show) {
+                    loading.visibility = View.VISIBLE
+                    rv_restaurants.visibility = View.GONE
+                } else {
+                    loading.visibility = View.GONE
+                    rv_restaurants.visibility = View.VISIBLE
+                }
+            }
 
 }
