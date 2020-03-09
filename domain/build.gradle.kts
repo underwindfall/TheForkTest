@@ -12,4 +12,6 @@ dependencies {
     implementation(deps.rx.kotlin)
     implementation(deps.dagger.core)
     kapt(deps.dagger.compile)
+    testImplementation(deps.test.mockito)
+    testImplementation(deps.test.junit)
 }

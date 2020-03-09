@@ -4,8 +4,6 @@ import com.qifan.com.data.utils.buildRestaurant
 import com.qifan.data.TheForkRepositoryImpl
 import com.qifan.data.api.TheForkService
 import com.qifan.data.entity.ErrorType
-import com.qifan.data.entity.Restaurant
-import com.qifan.data.entity.RestaurantDetail
 import com.qifan.domain.model.RestaurantModel
 import com.qifan.domain.model.base.Results
 import io.reactivex.Single
