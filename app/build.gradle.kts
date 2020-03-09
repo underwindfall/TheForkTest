@@ -56,7 +56,6 @@ dependencies {
     implementation(deps.android.androidx.material)
     implementation(deps.android.viewModel.core)
     implementation(deps.android.viewModel.ktx)
-//    implementation(deps.android.viewModel.savedState)
     implementation(deps.dagger.core)
     kapt(deps.dagger.compile)
     implementation(deps.dagger.android)
@@ -69,6 +68,7 @@ dependencies {
     implementation(deps.retrofit.gson)
     implementation(deps.picasso)
 
+    testImplementation(deps.test.mockito)
     testImplementation(deps.test.junit)
     androidTestImplementation(deps.test.android.extensionJunit)
     androidTestImplementation(deps.test.android.expresso)
