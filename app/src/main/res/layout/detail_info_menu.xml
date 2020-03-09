@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
     android:layout_marginStart="15dp"
+    android:layout_marginTop="10dp"
     android:layout_marginEnd="15dp">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -83,8 +83,8 @@
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
         android:textStyle="bold"
+        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_start_1"
         tools:text="15€" />
@@ -110,8 +110,8 @@
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
         android:textStyle="bold"
+        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_start_2"
         tools:text="15€" />
@@ -135,9 +135,9 @@
         android:layout_height="wrap_content"
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
+        android:gravity="end"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_start_3"
         tools:text="15€" />
@@ -177,8 +177,8 @@
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
         android:textStyle="bold"
+        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_main_1"
         tools:text="15€" />
@@ -203,8 +203,8 @@
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
         android:textStyle="bold"
+        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_main_2"
         tools:text="15€" />
@@ -229,8 +229,8 @@
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
         android:textStyle="bold"
+        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_main_3"
         tools:text="15€" />
@@ -268,9 +268,9 @@
         android:layout_height="wrap_content"
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
+        android:gravity="end"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_dessert_1"
         tools:text="15€" />
@@ -294,9 +294,9 @@
         android:layout_height="wrap_content"
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
+        android:gravity="end"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_dessert_2"
         tools:text="15€" />
@@ -321,8 +321,8 @@
         android:text="@string/restaurant_menu_price"
         android:textColor="#000"
         android:textStyle="bold"
+        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/restaurant_menu_dessert_3"
         tools:text="15€" />

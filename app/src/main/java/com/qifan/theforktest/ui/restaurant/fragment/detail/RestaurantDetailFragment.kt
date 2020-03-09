@@ -1,4 +1,4 @@
-package com.qifan.theforktest.ui.fragment.detail
+package com.qifan.theforktest.ui.restaurant.fragment.detail
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,29 +6,26 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.qifan.domain.model.RestaurantModel
-import com.qifan.domain.respository.RestaurantId
 import com.qifan.theforktest.R
 import com.qifan.theforktest.di.viewmodel.ViewModelFactory
 import com.qifan.theforktest.extension.*
 import com.qifan.theforktest.extension.reactive.mainThread
 import com.qifan.theforktest.extension.reactive.subscribeAndLogError
-import com.qifan.theforktest.extension.reactive.subscribeError
-import com.qifan.theforktest.extension.viewmodel.getInjectViewModel
+import com.qifan.theforktest.extension.viewmodel.getSharedInjectViewModel
 import com.qifan.theforktest.ui.base.view.fragment.InjectionFragment
 import com.qifan.theforktest.ui.model.backDrawableResource
 import com.qifan.theforktest.ui.notifier.ErrorListener
 import com.qifan.theforktest.ui.notifier.ErrorNotifier
 import com.qifan.theforktest.ui.notifier.notifier
+import com.qifan.theforktest.ui.restaurant.RestaurantDetailViewModel
 import io.reactivex.Flowable
-import io.reactivex.Single
-import kotlinx.android.synthetic.main.detail_fragment.*
 import kotlinx.android.synthetic.main.detail_info_header.*
 import kotlinx.android.synthetic.main.detail_info_menu.*
 import kotlinx.android.synthetic.main.detail_note_rate.*
 import kotlinx.android.synthetic.main.detail_note_tripadvisor_rate.*
+import kotlinx.android.synthetic.main.fragment_detail.*
 import javax.inject.Inject
 
 
@@ -40,21 +37,16 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
 
     private lateinit var detailViewModel: RestaurantDetailViewModel
 
-    private var id: RestaurantId? = null
 
     private lateinit var slideAdapter: RestaurantSlideAdapter
 
-    override fun getLayoutId(): Int = R.layout.detail_fragment
+    override fun getLayoutId(): Int = R.layout.fragment_detail
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        detailViewModel = getInjectViewModel(viewModelFactory)
+        detailViewModel = getSharedInjectViewModel(viewModelFactory)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        id = getRestaurantId()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,20 +56,14 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
 
     override fun onStart() {
         super.onStart()
-        id?.let {
-            compositeDisposable.addAll(
-                getRestaurantDetails(it).subscribeError(this),
-                getRestaurantDetailLoading().subscribeAndLogError(),
-                getRestaurantDetailSuccess().subscribeAndLogError(),
-                getRestaurantDetailFailed().subscribeAndLogError()
-            )
-        }
+        compositeDisposable.addAll(
+            getRestaurantDetailLoading().subscribeAndLogError(),
+            getRestaurantDetailSuccess().subscribeAndLogError(),
+            getRestaurantDetailFailed().subscribeAndLogError()
+        )
+
     }
 
-    private fun getRestaurantDetails(id: RestaurantId): Single<RestaurantModel> {
-        return detailViewModel.getDetail(id)
-            .mainThread()
-    }
 
     private fun getRestaurantDetailSuccess(): Flowable<RestaurantModel> {
         return detailViewModel.restaurantDetail
@@ -315,10 +301,6 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
     }
 
 
-    private fun getRestaurantId(): String? {
-        return arguments?.getString(RESTAURANT_ID_KEY)
-    }
-
     private fun setupToolbar() {
         activity?.apply {
             toolbar.apply {
@@ -340,18 +322,8 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
     }
 
     private fun goBack() {
+        detailViewModel.restaurantDetail.reset()
         fragmentManager?.popBackStack()
     }
 
-
-    companion object {
-        private const val RESTAURANT_ID_KEY = "RESTAURANT_ID"
-        fun newInstance(id: RestaurantId): RestaurantDetailFragment {
-            return RestaurantDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(RESTAURANT_ID_KEY, id)
-                }
-            }
-        }
-    }
 }

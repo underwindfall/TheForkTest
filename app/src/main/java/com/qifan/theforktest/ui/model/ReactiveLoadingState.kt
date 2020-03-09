@@ -23,6 +23,7 @@ class ReactiveLoadingState<T> {
     val error: Flowable<Pair<Boolean, Throwable?>> = hasError
         .filter { (hasError, _) -> hasError }
 
+
     val success: Flowable<T> = state
         .map { (it.status == Status.SUCCESS) to it.data }
         .distinctUntilChanged()
@@ -32,7 +33,7 @@ class ReactiveLoadingState<T> {
     fun onSuccess(data: T) = stateSink.onNext(State(Status.SUCCESS, data, null))
     fun onError(throwable: Throwable) = stateSink.onNext(State(Status.ERROR, null, throwable))
     fun onLoading() = stateSink.onNext(State(Status.LOADING, null, null))
-    fun reset() = stateSink.onNext(State(Status.INIT))
+    fun reset() = stateSink.onNext(State(Status.INIT, null, null))
 
     enum class Status {
         INIT,

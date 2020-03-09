@@ -1,18 +1,25 @@
-package com.qifan.theforktest.ui
+package com.qifan.theforktest.ui.restaurant
 
 import android.os.Bundle
 import android.widget.Toast
-import com.qifan.domain.respository.RestaurantId
 import com.qifan.theforktest.R
+import com.qifan.theforktest.di.viewmodel.ViewModelFactory
+import com.qifan.theforktest.extension.viewmodel.getInjectViewModel
 import com.qifan.theforktest.ui.base.view.activity.InjectionActivity
-import com.qifan.theforktest.ui.fragment.detail.RestaurantDetailFragment
-import com.qifan.theforktest.ui.fragment.list.RestaurantListFragment
-import com.qifan.theforktest.ui.fragment.list.RouteCallBack
 import com.qifan.theforktest.ui.notifier.ErrorListener
+import com.qifan.theforktest.ui.restaurant.fragment.detail.RestaurantDetailFragment
+import com.qifan.theforktest.ui.restaurant.fragment.search.RestaurantSearchFragment
+import com.qifan.theforktest.ui.restaurant.fragment.search.RouteCallBack
+import javax.inject.Inject
 
 class RestaurantActivity : InjectionActivity(),
     ErrorListener,
     RouteCallBack {
+
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var detailViewModel: RestaurantDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,10 +27,12 @@ class RestaurantActivity : InjectionActivity(),
             supportFragmentManager.beginTransaction()
                 .add(
                     R.id.container,
-                    RestaurantListFragment()
+                    RestaurantSearchFragment()
                 )
                 .commit()
         }
+
+        detailViewModel = getInjectViewModel(viewModelFactory)
     }
 
     override fun getLayoutId(): Int = R.layout.activity_main
@@ -32,11 +41,11 @@ class RestaurantActivity : InjectionActivity(),
         Toast.makeText(this, error?.message, Toast.LENGTH_LONG).show()
     }
 
-    override fun navigateToDetail(id: RestaurantId) {
+    override fun navigateToDetail() {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.container,
-                RestaurantDetailFragment.newInstance(id)
+                RestaurantDetailFragment()
             )
             .addToBackStack("Detail")
             .commit()

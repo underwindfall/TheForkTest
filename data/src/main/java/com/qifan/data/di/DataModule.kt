@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module(
@@ -21,12 +22,21 @@ import javax.inject.Singleton
     ]
 )
 object DataModule {
+    private const val TIME_OUT_SECONDS = 10L
 
     @Provides
     @JvmStatic
     @Singleton
     internal fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+            .connectTimeout(
+                TIME_OUT_SECONDS,
+                TimeUnit.SECONDS
+            )
+            .readTimeout(
+                TIME_OUT_SECONDS,
+                TimeUnit.SECONDS
+            )
             .build()
     }
 

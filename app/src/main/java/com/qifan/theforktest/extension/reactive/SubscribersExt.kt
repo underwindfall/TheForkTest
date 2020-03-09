@@ -2,9 +2,7 @@ package com.qifan.theforktest.extension.reactive
 
 import android.util.Log
 import com.qifan.theforktest.ui.notifier.ErrorNotifier
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Single
+import io.reactivex.*
 import io.reactivex.disposables.Disposable
 
 
@@ -31,3 +29,5 @@ fun <T> Single<T>.logError(): Single<T> = doOnError(::logStreamError)
 private fun logStreamError(exception: Throwable) {
     Log.e("StreamError", exception.message, exception)
 }
+
+

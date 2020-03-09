@@ -1,4 +1,4 @@
-package com.qifan.theforktest.ui.fragment.detail
+package com.qifan.theforktest.ui.restaurant.fragment.detail
 
 import android.view.View
 import android.view.ViewGroup

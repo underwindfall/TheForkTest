@@ -2,6 +2,7 @@ package com.qifan.data.api
 
 import com.qifan.data.entity.Restaurant
 import io.reactivex.Single
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -18,7 +19,7 @@ interface TheForkApi {
         method: ApiMethod,
         @Query("id_restaurant")
         restaurantId: ApiRequestId
-    ): Single<Restaurant>
+    ): Single<Response<Restaurant>>
 
     companion object {
         const val HOST = "api.lafourchette.com/"

@@ -2,7 +2,7 @@ package com.qifan.theforktest.di.module
 
 import com.qifan.theforktest.di.module.restaurant.RestaurantFragmentModule
 import com.qifan.theforktest.di.scope.PerActivity
-import com.qifan.theforktest.ui.RestaurantActivity
+import com.qifan.theforktest.ui.restaurant.RestaurantActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

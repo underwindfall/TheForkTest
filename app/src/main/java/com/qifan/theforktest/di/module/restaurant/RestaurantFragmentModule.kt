@@ -1,8 +1,8 @@
 package com.qifan.theforktest.di.module.restaurant
 
 import com.qifan.theforktest.di.scope.PerFragment
-import com.qifan.theforktest.ui.fragment.detail.RestaurantDetailFragment
-import com.qifan.theforktest.ui.fragment.list.RestaurantListFragment
+import com.qifan.theforktest.ui.restaurant.fragment.detail.RestaurantDetailFragment
+import com.qifan.theforktest.ui.restaurant.fragment.search.RestaurantSearchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -10,7 +10,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class RestaurantFragmentModule {
     @PerFragment
     @ContributesAndroidInjector
-    abstract fun bindsListFragment(): RestaurantListFragment
+    abstract fun bindsListFragment(): RestaurantSearchFragment
 
     @PerFragment
     @ContributesAndroidInjector

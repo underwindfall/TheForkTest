@@ -2,6 +2,7 @@ package com.qifan.data.api
 
 import com.qifan.data.entity.Restaurant
 import io.reactivex.Single
+import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,7 +12,7 @@ interface TheForkGetRestaurantApi {
         key: ApiKey = KEY,
         method: ApiMethod = METHOD,
         restaurantId: ApiRequestId
-    ): Single<Restaurant>
+    ): Single<Response<Restaurant>>
 
     companion object {
         private const val KEY = "IPHONEPRODEDCRFV"
@@ -27,7 +28,7 @@ class TheForkService @Inject constructor(
         key: ApiKey,
         method: ApiMethod,
         restaurantId: ApiRequestId
-    ): Single<Restaurant> {
+    ): Single<Response<Restaurant>> {
         return api.getRestaurantDetail(key, method, restaurantId)
     }
 }
