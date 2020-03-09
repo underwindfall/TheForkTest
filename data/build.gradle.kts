@@ -17,5 +17,9 @@ dependencies {
     implementation(deps.retrofit.gson)
     implementation(deps.dagger.core)
     kapt(deps.dagger.compile)
+
+    testImplementation(deps.okhttp.mock)
+    testImplementation(deps.test.mockito)
+    testImplementation(deps.test.junit)
 }
 

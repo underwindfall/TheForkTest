@@ -23,6 +23,7 @@ object deps {
         const val picasso = "2.71828"
         // test
         const val juint = "4.13"
+        const val mockito = "3.2.4"
         const val junitExt = "1.1.1"
         const val expresso = "3.2.0"
     }
@@ -60,6 +61,7 @@ object deps {
 
     object okhttp {
         const val core = "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+        const val mock = "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
     }
 
     const val gson = "com.google.code.gson:gson:${versions.gson}"
@@ -96,5 +98,7 @@ object deps {
         }
 
         const val junit = "junit:junit:${versions.juint}"
+
+        const val mockito = "org.mockito:mockito-core:${versions.mockito}"
     }
 }
