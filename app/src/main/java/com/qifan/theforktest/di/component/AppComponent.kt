@@ -6,6 +6,7 @@ import com.qifan.domain.di.DomainModule
 import com.qifan.theforktest.App
 import com.qifan.theforktest.di.module.ActivityBindModule
 import com.qifan.theforktest.di.module.AppModule
+import com.qifan.theforktest.di.module.interceptor.InterceptorModule
 import com.qifan.theforktest.di.viewmodel.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -22,7 +23,8 @@ import javax.inject.Singleton
         AppModule::class,
         DataModule::class,
         DomainModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        InterceptorModule::class
     ]
 )
 interface AppComponent {

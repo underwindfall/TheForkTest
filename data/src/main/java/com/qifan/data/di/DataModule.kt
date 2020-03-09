@@ -8,6 +8,7 @@ import com.qifan.data.di.service.ServiceModule
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -27,7 +28,7 @@ object DataModule {
     @Provides
     @JvmStatic
     @Singleton
-    internal fun provideOkHttpClient(): OkHttpClient {
+    internal fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(
                 TIME_OUT_SECONDS,
@@ -37,6 +38,7 @@ object DataModule {
                 TIME_OUT_SECONDS,
                 TimeUnit.SECONDS
             )
+            .addInterceptor(interceptor)
             .build()
     }
 

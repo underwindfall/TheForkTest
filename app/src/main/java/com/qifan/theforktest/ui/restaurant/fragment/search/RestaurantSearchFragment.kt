@@ -4,8 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.qifan.domain.extension.computation
 import com.qifan.domain.extension.toFlowableDefault
 import com.qifan.domain.model.RestaurantModel
+import com.qifan.domain.model.base.Results
 import com.qifan.domain.model.exception.TheForkException
 import com.qifan.domain.respository.RestaurantId
 import com.qifan.theforktest.R
@@ -32,7 +34,6 @@ class RestaurantSearchFragment : InjectionFragment(), ErrorNotifier {
     private lateinit var detailViewModel: RestaurantDetailViewModel
 
     private val onSearchId = PublishProcessor.create<RestaurantId>()
-
     private val routeCallback by lazy<RouteCallBack> {
         activity.let {
             check(it is RouteCallBack) { "Activity should implements RouteCallBack" }
@@ -93,26 +94,21 @@ class RestaurantSearchFragment : InjectionFragment(), ErrorNotifier {
 
 
     private fun buttonAction() {
-        val id = search_edit_text.text.toString()
         search_button.setOnClickListener {
-            when {
-                id.isEmpty() -> {
-                    Toast.makeText(
-                        context,
-                        resources.getString(R.string.search_tooltip_empty),
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                "[0-9]+".toRegex().matches(id) -> {
-                    onSearchId.onNext(id)
-                }
-                else -> {
-                    Toast.makeText(
-                        context,
-                        resources.getString(R.string.search_tooltip_invalid),
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+            if (search_edit_text.text.toString().isEmpty()) {
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.search_tooltip_empty),
+                    Toast.LENGTH_LONG
+                ).show()
+            } else if ("[0-9]+".toRegex().matches(search_edit_text.text.toString())) {
+                onSearchId.onNext(search_edit_text.text.toString())
+            } else {
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.search_tooltip_invalid),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -126,12 +122,15 @@ class RestaurantSearchFragment : InjectionFragment(), ErrorNotifier {
         }
     }
 
-    private fun getRestaurantDetailSuccess(): Flowable<RestaurantModel> {
+    private fun getRestaurantDetailSuccess(): Flowable<Results<RestaurantModel>> {
         return detailViewModel.restaurantDetail
             .success
             .mainThread()
-            .doOnNext {
-                routeCallback.navigateToDetail()
+            .doOnNext { result ->
+                when (result) {
+                    is Results.Failure -> displayError(hasError = true, error = result.error)
+                    is Results.Success -> routeCallback.navigateToDetail()
+                }
             }
     }
 
@@ -141,20 +140,25 @@ class RestaurantSearchFragment : InjectionFragment(), ErrorNotifier {
             .hasError
             .mainThread()
             .doOnNext { (hasError, error) ->
-                if (hasError) {
-                    when (error) {
-                        is TheForkException.NetworkException,
-                        is TheForkException.EmptyException -> {
-                            search_error.visibility = View.VISIBLE
-                            search_button.visibility = View.GONE
-                        }
-                        else -> errorListener.showError(error)
-                    }
-                } else {
-                    search_error.visibility = View.GONE
-                    search_button.visibility = View.VISIBLE
-                }
+                displayError(hasError, error)
             }
+
+
+    private fun displayError(hasError: Boolean, error: Throwable?) {
+        if (hasError) {
+            when (error) {
+                is TheForkException.NetworkException,
+                is TheForkException.EmptyException -> {
+                    search_error.visibility = View.VISIBLE
+                    search_button.visibility = View.GONE
+                }
+                else -> errorListener.showError(error)
+            }
+        } else {
+            search_error.visibility = View.GONE
+            search_button.visibility = View.VISIBLE
+        }
+    }
 
     private fun getRestaurantDetailLoading(): Flowable<Boolean> =
         detailViewModel.restaurantDetail
@@ -170,8 +174,13 @@ class RestaurantSearchFragment : InjectionFragment(), ErrorNotifier {
                 }
             }
 
-    private fun getRestaurantDetails(): Flowable<RestaurantModel> {
-        return onSearchId.flatMapSingle { detailViewModel.getDetail(it) }
+    private fun getRestaurantDetails(): Flowable<Results<RestaurantModel>> {
+        return onSearchId
+            .distinctUntilChanged()
+            .computation()
+            .switchMapSingle {
+                detailViewModel.getDetail(it)
+            }
             .mainThread()
     }
 

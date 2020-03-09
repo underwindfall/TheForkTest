@@ -22,4 +22,6 @@
     <string name="search_tooltip_empty">S.V.P donnez un id de restaurant</string>
     <string name="search_tooltip_invalid">Attension ce champs accepte que chiffres</string>
     <string name="search_error">Aucun Restaurant trouvée</string>
+    <string name="search_network_error">Network Issue</string>
+    <string name="search_empty_restaurant">@string/search_error</string>
 </resources>

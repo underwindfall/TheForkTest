@@ -50,4 +50,9 @@ class RestaurantActivity : InjectionActivity(),
             .addToBackStack("Detail")
             .commit()
     }
+
+    override fun onBackPressed() {
+        detailViewModel.restaurantDetail.reset()
+        super.onBackPressed()
+    }
 }

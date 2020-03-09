@@ -14,18 +14,13 @@ class RestaurantDetailViewModel @Inject constructor(
     private val getRestaurantDetailUseCase: GetRestaurantDetailUseCase
 ) : BaseViewModel() {
 
-    val restaurantDetail: ReactiveLoadingState<RestaurantModel> =
+    val restaurantDetail: ReactiveLoadingState<Results<RestaurantModel>> =
         ReactiveLoadingState()
 
-    fun getDetail(id: RestaurantId): Single<RestaurantModel> {
+    fun getDetail(id: RestaurantId): Single<Results<RestaurantModel>> {
         return getRestaurantDetailUseCase.getRestaurantDetail(id)
-            .flatMap { result ->
-                when (result) {
-                    is Results.Success -> Single.just(result.data)
-                    is Results.Failure -> Single.error(result.error)
-                }
-            }
             .bindLoadingState(restaurantDetail)
     }
+
 
 }

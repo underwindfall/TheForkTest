@@ -7,10 +7,9 @@ import com.qifan.domain.model.RestaurantModel
 import com.qifan.domain.model.base.Results
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
-import retrofit2.Response
 
-fun restaurantResponseToModelResult(): SingleTransformer<Response<Restaurant>, Results<RestaurantModel>> {
-    return SingleTransformer { upstream: Single<Response<Restaurant>> ->
+fun restaurantResponseToModelResult(): SingleTransformer<Restaurant, Results<RestaurantModel>> {
+    return SingleTransformer { upstream: Single<Restaurant> ->
         upstream.flatMap { response ->
             when (val restaurant = processApiResponse(response)) {
                 is Results.Success -> Single.just(Results.success(result = restaurant.data.toModel()))

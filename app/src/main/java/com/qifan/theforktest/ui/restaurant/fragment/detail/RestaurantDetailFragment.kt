@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import com.qifan.domain.model.RestaurantModel
+import com.qifan.domain.model.base.Results
+import com.qifan.domain.model.exception.TheForkException
 import com.qifan.theforktest.R
 import com.qifan.theforktest.di.viewmodel.ViewModelFactory
 import com.qifan.theforktest.extension.*
@@ -65,11 +68,16 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
     }
 
 
-    private fun getRestaurantDetailSuccess(): Flowable<RestaurantModel> {
+    private fun getRestaurantDetailSuccess(): Flowable<Results<RestaurantModel>> {
         return detailViewModel.restaurantDetail
             .success
             .mainThread()
-            .doOnNext(::bindRestaurant)
+            .doOnNext { result ->
+                when (result) {
+                    is Results.Failure -> displayError(hasError = true, error = result.error)
+                    is Results.Success -> bindRestaurant(result.data)
+                }
+            }
     }
 
     private fun getRestaurantDetailFailed(): Flowable<Pair<Boolean, Throwable?>> =
@@ -77,10 +85,26 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
             .hasError
             .mainThread()
             .doOnNext { (hasError, error) ->
-                if (hasError) {
-                    errorListener.showError(error)
-                }
+                displayError(hasError, error)
             }
+
+    private fun displayError(hasError: Boolean, error: Throwable?) {
+        if (hasError) {
+            when (error) {
+                is TheForkException.NetworkException -> Toast.makeText(
+                    context,
+                    resources.getString(R.string.search_network_error),
+                    Toast.LENGTH_LONG
+                ).show()
+                is TheForkException.EmptyException -> Toast.makeText(
+                    context,
+                    resources.getString(R.string.search_empty_restaurant),
+                    Toast.LENGTH_LONG
+                ).show()
+                else -> errorListener.showError(error)
+            }
+        }
+    }
 
     private fun getRestaurantDetailLoading(): Flowable<Boolean> =
         detailViewModel.restaurantDetail

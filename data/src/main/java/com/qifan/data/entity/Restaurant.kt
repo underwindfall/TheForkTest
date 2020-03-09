@@ -1,15 +1,75 @@
 package com.qifan.data.entity
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
+
+enum class ErrorType(val message: String? = null) {
+    RESTAURANT_NOT_FOUND("RESTAURANT_NOT_FOUND"),
+    BAD_PARAMETER("BAD_PARAMETER"),
+    JSON_PARSING_EXCEPTION("JSON_PARSING_EXCEPTION"),
+    UNKNOWN();
+
+    companion object {
+        @JvmStatic
+        fun fromValue(value: String?): ErrorType? =
+            values().find { it.message.equals(value, ignoreCase = true) }
+    }
+}
+
+interface DefaultResponse {
+    val result: Int?
+    val resultCode: String?
+    var errorType: ErrorType?
+
+    fun isSuccess(): Boolean = result == RESULT_OK
+
+    fun generateFailure(inputResultCode: String? = resultCode) {
+        errorType = ErrorType.fromValue(inputResultCode)
+    }
+
+    companion object {
+        const val RESULT_OK = 1
+
+        fun <T : DefaultResponse> fromJson(
+            resultCode: String?,
+            responseType: Type
+        ): T? {
+            return emptyResponse<T>(responseType)?.apply {
+                generateFailure(resultCode)
+            }
+        }
+
+        fun <T : DefaultResponse?> emptyResponse(responseType: Type?): T? {
+            var instance: T? = null
+            try {
+                val typeToken: TypeToken<T> = TypeToken.get(responseType) as TypeToken<T>
+                val clazz: Class<in T> = typeToken.rawType
+                instance = clazz.newInstance() as T
+            } catch (cce: InstantiationException) {
+            } catch (cce: IllegalAccessException) {
+            } catch (cce: ClassCastException) {
+            }
+            if (instance == null) {
+                instance = Gson().fromJson("{}", responseType)
+            }
+            instance?.generateFailure()
+            return instance
+        }
+    }
+}
+
 
 data class Restaurant(
     @SerializedName("result")
-    val result: Int,
+    override val result: Int?,
     @SerializedName("result_code")
-    val resultCode: String,
+    override val resultCode: String?,
     @SerializedName("data")
-    val data: RestaurantDetail
-)
+    val data: RestaurantDetail,
+    override var errorType: ErrorType? = null
+) : DefaultResponse
 
 data class RestaurantDetail(
     @SerializedName(value = "id_restaurant")
