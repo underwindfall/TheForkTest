@@ -53,6 +53,8 @@ class RestaurantSearchFragment : InjectionFragment(), ErrorNotifier {
         checkRouteCallback()
     }
 
+    override fun getMenuId(): Int? = null
+
     private fun checkRouteCallback() {
         routeCallback
     }

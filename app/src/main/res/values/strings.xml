@@ -24,4 +24,5 @@
     <string name="search_error">Aucun Restaurant trouvée</string>
     <string name="search_network_error">Network Issue</string>
     <string name="search_empty_restaurant">@string/search_error</string>
+    <string name="menu_search">search</string>
 </resources>

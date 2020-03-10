@@ -5,8 +5,10 @@ import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.qifan.domain.model.RestaurantModel
 import com.qifan.domain.model.base.Results
@@ -44,6 +46,8 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
     private lateinit var slideAdapter: RestaurantSlideAdapter
 
     override fun getLayoutId(): Int = R.layout.fragment_detail
+
+    override fun getMenuId(): Int? = R.menu.menu_search
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -329,10 +333,11 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
         activity?.apply {
             toolbar.apply {
                 showNavIcon(context, backDrawableResource) { navigationIcon = it }
-                setNavigationOnClickListener {
-                    hideNavIcon(context, backDrawableResource) { navigationIcon = it }
-                    goBack()
-                }
+            }
+            (this as AppCompatActivity).setSupportActionBar(toolbar)
+            toolbar.setNavigationOnClickListener {
+                hideNavIcon(this, backDrawableResource) { toolbar.navigationIcon = it }
+                goBack()
             }
         }
 
@@ -346,8 +351,15 @@ class RestaurantDetailFragment : InjectionFragment(), ErrorNotifier {
     }
 
     private fun goBack() {
-        detailViewModel.restaurantDetail.reset()
-        fragmentManager?.popBackStack()
+        activity?.onBackPressed()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.findItem(R.id.menu_action_search).setOnMenuItemClickListener {
+            goBack()
+            true
+        }
     }
 
 }

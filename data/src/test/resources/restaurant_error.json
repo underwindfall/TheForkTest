@@ -1,9 +1,0 @@
-{
-  "result": 0,
-  "result_code": "RESTAURANT_NOT_FOUND",
-  "result_detail": "\nmethod:restaurant_get_info\nkey:IPHONEPRODEDCRFV\nparams:{\"id_restaurant\":\"1\"}",
-  "result_msg": "No restaurant found for id 1",
-  "result_cached": "none",
-  "data": [],
-  "sync": []
-}
